@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Docker Explained</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Header -->
+    <header class="fixed top-0 inset-x-0 z-50 border-b border-[var(--border-subtle)] backdrop-blur-lg bg-[var(--navbar-bg)]">
+        <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" id="blog-back-link" class="inline-flex items-center gap-2 text-[var(--text-3)] hover:text-[var(--text-1)] text-sm transition-colors duration-200">
+                <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+                Portfolio
+            </a>
+
+            <a href="index.html" id="blog-logo" class="text-[var(--text-1)] font-semibold text-base tracking-tight select-none">
+                Aman<span class="text-[var(--accent)] text-xl leading-none">.</span>dev
+            </a>
+        </nav>
+    </header>
+
+    <!-- Post Header -->
+    <div class="pt-24">
+        <div class="max-w-6xl mx-auto px-6 pb-12 border-b border-[var(--border)]">
+            <div class="max-w-2xl">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-xs text-[var(--accent)] bg-[var(--accent-dim)] border border-[var(--accent-border)] px-3 py-1 rounded-full font-medium tracking-wide">
+                        DevOps
+                    </span>
+                    <span class="text-xs text-[var(--text-4)]">•</span>
+                    <span class="text-xs text-[var(--text-4)]">7 min read</span>
+                    <span class="text-xs text-[var(--text-4)]">•</span>
+                    <span class="text-xs text-[var(--text-4)]">Beginner Friendly</span>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl font-serif font-bold text-[var(--text-1)] leading-tight tracking-tight">
+                    Docker Explained: Why Every Developer Should Learn Containers
+                </h1>
+
+                <p class="mt-5 text-lg text-[var(--text-2)] leading-relaxed font-light">
+                    If you've ever heard "it works on my machine" – Docker is the fix. Here's everything you need to know to get started, explained simply.
+                </p>
+
+                <div class="mt-8 flex items-center gap-4">
+                    <div class="w-9 h-9 rounded-full bg-[var(--accent-dim)] border border-[var(--accent-border)] flex items-center justify-center shrink-0">
+                        <span class="text-[var(--accent)] text-sm font-bold select-none">AA</span>
+                    </div>
+                    <div>
+                        <p class="text-sm text-[var(--text-1)] font-medium">Aman Ali</p>
+                        <p class="text-sm text-[var(--text-4)]">August 1, 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+
+            <!-- Table of Contents Sidebar -->
+            <aside id="toc" class="hidden lg:block w-44 shrink-0">
+                <div class="sticky top-24">
+                    <p class="text-xs font-medium text-[var(--text-4)] tracking-widest uppercase mb-5">Contents</p>
+                    <nav class="flex flex-col gap-3">
+                        <a href="#sec-problem" class="text-xs text-[var(--text-4)] hover:text-[var(--accent)] transition-colors duration-200 leading-relaxed">The Problem</a>
+                        <a href="#sec-what" class="text-xs text-[var(--text-4)] hover:text-[var(--accent)] transition-colors duration-200 leading-relaxed">What is Docker?</a>
+                        <a href="#sec-containers" class="text-xs text-[var(--text-4)] hover:text-[var(--accent)] transition-colors duration-200 leading-relaxed">Containers vs VMs</a>
+                        <a href="#sec-concepts" class="text-xs text-[var(--text-4)] hover:text-[var(--accent)] transition-colors duration-200 leading-relaxed">Key Concepts</a>
+                        <a href="#sec-compose" class="text-xs text-[var(--text-4)] hover:text-[var(--accent)] transition-colors duration-200 leading-relaxed">Docker Compose</a>
+                        <a href="#sec-why" class="text-xs text-[var(--text-4)] hover:text-[var(--accent)] transition-colors duration-200 leading-relaxed">Why Teams Love It</a>
+                        <a href="#sec-start" class="text-xs text-[var(--text-4)] hover:text-[var(--accent)] transition-colors duration-200 leading-relaxed">Where to Start</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Article Body -->
+            <article class="flex-1 min-w-0 max-w-2xl">
+
+                <section id="sec-problem" class="mb-14">
+                    <p class="text-[var(--text-2)] leading-8 text-base">
+                        Picture this: you spend two days building a feature on your laptop. Tests pass. Everything works. You push the code, your teammate pulls it down – and nothing runs. Error messages everywhere. Hours of debugging later, you discover the issue: different Node.js versions, a missing environment variable, or a system dependency that only exists on your machine.
+                    </p>
+                    <p class="text-[var(--text-3)] leading-8 text-base mt-5">
+                        This problem is so common in software development that it has its own sarcastic phrase. Developers call it the "works on my machine" syndrome – and it has wasted more hours of developer time than almost anything else in the industry.
+                    </p>
+                    <blockquote class="border-l-2 border-[var(--accent)] pl-6 my-8 py-1">
+                        <p class="text-[var(--text-2)] italic text-base leading-8">
+                            "It works on my machine" is not a solution. Docker makes it so the machine doesn't matter at all.
+                        </p>
+                    </blockquote>
+                    <p class="text-[var(--text-3)] leading-8 text-base">
+                        Docker was created to solve exactly this problem. And it does it so well that it's now one of the most widely used tools in all of software development – from small startups to Google-scale companies.
+                    </p>
+                </section>
+
+                <section id="sec-what" class="mb-14">
+                    <h2 class="text-2xl font-serif font-bold text-[var(--text-1)] mb-5 pb-3 border-b border-[var(--border)]">
+                        What Exactly Is Docker?
+                    </h2>
+                    <p class="text-[var(--text-3)] leading-8 text-base mb-5">
+                        Docker is a platform that lets you package your application – along with everything it needs to run – into a single, portable unit called a <strong class="text-[var(--text-1)] font-semibold">container</strong>.
+                    </p>
+                    <p class="text-[var(--text-3)] leading-8 text-base mb-5">
+                        Think of it like a lunchbox. Instead of telling someone "go to the store, buy bread, find mustard, and oh by the way you need a specific brand of knife" – you just hand them the lunchbox. Everything they need is already inside, pre-packed, and ready to go.
+                    </p>
+                    <p class="text-[var(--text-3)] leading-8 text-base">
+                        That lunchbox runs the same way whether you open it on your laptop, your teammate's Windows PC, a server in Germany, or a cloud machine in Singapore.
+                    </p>
+                </section>
+
+                <section id="sec-containers" class="mb-14">
+                    <h2 class="text-2xl font-serif font-bold text-[var(--text-1)] mb-5 pb-3 border-b border-[var(--border)]">
+                        Containers vs Virtual Machines
+                    </h2>
+                    <p class="text-[var(--text-3)] leading-8 text-base mb-6">
+                        Before Docker, the standard answer to "I need an isolated environment" was a <strong class="text-[var(--text-1)] font-semibold">Virtual Machine (VM)</strong>. VMs work – but they're heavy. Each VM runs an entire operating system on top of your host OS.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-[var(--surface-solid)] border border-[var(--border)] rounded-xl p-5">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-2 h-2 rounded-full bg-red-400 shrink-0"></div>
+                                <p class="text-sm font-semibold text-[var(--text-1)]">Virtual Machine</p>
+                            </div>
+                            <ul class="space-y-2">
+                                <li class="text-xs text-[var(--text-3)] leading-5 flex items-start gap-2">
+                                    <span class="w-1 h-1 rounded-full bg-[var(--text-4)] shrink-0 mt-2"></span>
+                                    <span>Full OS inside every VM (gigabytes)</span>
+                                </li>
+                                <li class="text-xs text-[var(--text-3)] leading-5 flex items-start gap-2">
+                                    <span class="w-1 h-1 rounded-full bg-[var(--text-4)] shrink-0 mt-2"></span>
+                                    <span>Takes minutes to start</span>
+                                </li>
+                                <li class="text-xs text-[var(--text-3)] leading-5 flex items-start gap-2">
+                                    <span class="w-1 h-1 rounded-full bg-[var(--text-4)] shrink-0 mt-2"></span>
+                                    <span>Heavy on RAM and CPU</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-[var(--surface-solid)] border border-[var(--accent-border)] rounded-xl p-5">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></div>
+                                <p class="text-sm font-semibold text-[var(--text-1)]">Docker Container</p>
+                            </div>
+                            <ul class="space-y-2">
+                                <li class="text-xs text-[var(--text-3)] leading-5 flex items-start gap-2">
+                                    <span class="text-[var(--accent)] shrink-0 text-xs">✓</span>
+                                    <span>Shares your OS kernel (megabytes)</span>
+                                </li>
+                                <li class="text-xs text-[var(--text-3)] leading-5 flex items-start gap-2">
+                                    <span class="text-[var(--accent)] shrink-0 text-xs">✓</span>
+                                    <span>Starts in under a second</span>
+                                </li>
+                                <li class="text-xs text-[var(--text-3)] leading-5 flex items-start gap-2">
+                                    <span class="text-[var(--accent)] shrink-0 text-xs">✓</span>
+                                    <span>Lightweight and efficient</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="sec-concepts" class="mb-14">
+                    <h2 class="text-2xl font-serif font-bold text-[var(--text-1)] mb-5 pb-3 border-b border-[var(--border)]">
+                        The Four Concepts You Need to Know
+                    </h2>
+                    <div class="space-y-5">
+                        <div class="flex gap-5 p-5 bg-[var(--surface-solid)] border border-[var(--border)] rounded-xl">
+                            <div class="w-10 h-10 rounded-lg bg-[var(--accent-dim)] border border-[var(--accent-border)] flex items-center justify-center shrink-0">
+                                <span class="text-[var(--accent)] font-mono font-bold text-sm">01</span>
+                            </div>
+                            <div>
+                                <h3 class="text-[var(--text-1)] font-semibold mb-1.5">Image</h3>
+                                <p class="text-sm text-[var(--text-3)] leading-relaxed">
+                                    An image is the blueprint. It's a read-only template that describes exactly what should be inside a container.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5 p-5 bg-[var(--surface-solid)] border border-[var(--border)] rounded-xl">
+                            <div class="w-10 h-10 rounded-lg bg-[var(--accent-dim)] border border-[var(--accent-border)] flex items-center justify-center shrink-0">
+                                <span class="text-[var(--accent)] font-mono font-bold text-sm">02</span>
+                            </div>
+                            <div>
+                                <h3 class="text-[var(--text-1)] font-semibold mb-1.5">Container</h3>
+                                <p class="text-sm text-[var(--text-3)] leading-relaxed">
+                                    A container is a running instance of an image. If an image is the recipe, a container is the actual cooked meal.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5 p-5 bg-[var(--surface-solid)] border border-[var(--border)] rounded-xl">
+                            <div class="w-10 h-10 rounded-lg bg-[var(--accent-dim)] border border-[var(--accent-border)] flex items-center justify-center shrink-0">
+                                <span class="text-[var(--accent)] font-mono font-bold text-sm">03</span>
+                            </div>
+                            <div>
+                                <h3 class="text-[var(--text-1)] font-semibold mb-1.5">Dockerfile</h3>
+                                <p class="text-sm text-[var(--text-3)] leading-relaxed">
+                                    A plain text file with instructions to build your image. It lives in Git so your environment becomes code.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5 p-5 bg-[var(--surface-solid)] border border-[var(--border)] rounded-xl">
+                            <div class="w-10 h-10 rounded-lg bg-[var(--accent-dim)] border border-[var(--accent-border)] flex items-center justify-center shrink-0">
+                                <span class="text-[var(--accent)] font-mono font-bold text-sm">04</span>
+                            </div>
+                            <div>
+                                <h3 class="text-[var(--text-1)] font-semibold mb-1.5">Docker Hub</h3>
+                                <p class="text-sm text-[var(--text-3)] leading-relaxed">
+                                    A public registry where you can host, push, and pull pre-built container images like Node.js, Redis, or PostgreSQL.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="sec-compose" class="mb-14">
+                    <h2 class="text-2xl font-serif font-bold text-[var(--text-1)] mb-5 pb-3 border-b border-[var(--border)]">
+                        Docker Compose: When One Container Isn't Enough
+                    </h2>
+                    <p class="text-[var(--text-3)] leading-8 text-base mb-5">
+                        Docker Compose lets you define all your microservices (API, database, cache) in a single configuration file and manage them together.
+                    </p>
+                </section>
+
+                <section id="sec-why" class="mb-14">
+                    <h2 class="text-2xl font-serif font-bold text-[var(--text-1)] mb-5 pb-3 border-b border-[var(--border)]">
+                        Why Teams Love Docker
+                    </h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2.5 shrink-0"></span>
+                            <p class="text-[var(--text-3)] text-base leading-7">
+                                <strong class="text-[var(--text-1)] font-semibold">Consistent environments:</strong> Development, staging, and production run identical configurations.
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-2.5 shrink-0"></span>
+                            <p class="text-[var(--text-3)] text-base leading-7">
+                                <strong class="text-[var(--text-1)] font-semibold">Faster onboarding:</strong> New developers clone the repo and run a single start command.
+                            </p>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="sec-start" class="mb-14">
+                    <h2 class="text-2xl font-serif font-bold text-[var(--text-1)] mb-5 pb-3 border-b border-[var(--border)]">
+                        Where Should You Start?
+                    </h2>
+                    <ol class="space-y-4 mb-8">
+                        <li class="flex items-start gap-4">
+                            <span class="w-6 h-6 rounded-full bg-[var(--surface-solid)] border border-[var(--border)] flex items-center justify-center shrink-0 mt-0.5">
+                                <span class="text-xs font-mono text-[var(--text-3)]">1</span>
+                            </span>
+                            <div>
+                                <p class="text-[var(--text-1)] font-medium text-sm mb-1">Install Docker Desktop</p>
+                                <p class="text-sm text-[var(--text-3)] leading-relaxed">Available for Mac, Windows, and Linux.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- Footer Back Navigation -->
+                <div class="pt-8 border-t border-[var(--border)] flex items-center justify-between">
+                    <a href="index.html" id="article-back" class="inline-flex items-center gap-2 text-sm text-[var(--text-4)] hover:text-[var(--accent)] transition-colors duration-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+                        </svg>
+                        Back to Portfolio
+                    </a>
+                    <p class="text-xs text-[var(--text-4)]">Aug 1, 2026</p>
+                </div>
+
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-[var(--border)] py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-6 flex items-center justify-center text-xs text-[var(--text-4)]">
+            <p>© 2026 Aman Ali. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
